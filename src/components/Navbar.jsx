@@ -3,8 +3,8 @@ import { Link } from "react-router";
 
 const Navbar = () => {
   return (
-    <header className="fixed-nav-bar w-nav">
-      <nav className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
+    <header>
+      <nav className="max-w-maxi mx-auto px-4 flex justify-between items-center">
         {/* nav links */}
         <ul className="nav_links">
           <li className="link">
@@ -36,17 +36,17 @@ const Navbar = () => {
             </Link>
           </span>
           <span>
+            <Link to="/login">
+              <i className="ri-user-line"></i>
+            </Link>
+          </span>
+          <span>
             <button className="hover:text-primary">
               <i className="ri-shopping-cart-line"></i>
               <sup className="text-sm inline-block px-1.5 text-white rounded-full bg-primary text-center">
                 0
               </sup>
             </button>
-          </span>
-          <span>
-            <Link to="/login">
-              <i className="ri-user-line"></i>
-            </Link>
           </span>
         </div>
       </nav>

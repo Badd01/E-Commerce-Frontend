@@ -1,3 +1,4 @@
+@reference "./index.css";
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@400;500;600;700&display=swap");
 
 :root {
@@ -15,14 +16,12 @@
 }
 
 * {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
 }
 
 .section_container {
   max-width: var(--max-width-1400);
-  margin: auto;
+  margin-inline: auto;
   padding: 5rem 1rem;
 }
 
@@ -72,7 +71,7 @@ body {
 }
 
 nav {
-  max-width: var(--max-width-1200);
+  max-width: var(--max-width-1400);
   margin: auto;
   padding: 2rem 1rem;
   display: flex;
@@ -583,9 +582,9 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .add-product-InputCSS {
-  @apply mt-1 block py-2.5 px-4 w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+  @apply mt-1 block py-2.5 px-4 w-full rounded-md bg-gray-100 border-gray-300 shadow-xs focus:outline-none focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
 }
 
 .add-product-btn {
-  @apply mt-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+  @apply mt-5 inline-flex justify-center py-2 px-4 border border-transparent shadow-xs text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
 }

@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  --maximum: "1400px";
-  --medium: "1200px";
-  --minimum: "900px";
+  --container-maxi: 1400px;
+  --container-medi: 1200px;
+  --container-mini: 900px;
   --color-primary: #ed3849;
-  --color-primary-dark: "#d23141";
-  --color-primary-light: "#f4e5ec";
-  --color-dark: "#0f172a";
-  --color-light: "#64748b";
-  --color-extra-light: "#f8fafc";
+  --color-primary-dark: #d23141;
+  --color-primary-light: #f4e5ec;
+  --color-dark: #0f172a;
+  --color-light: #64748b;
+  --color-extra-light: #f8fafc;
 }
