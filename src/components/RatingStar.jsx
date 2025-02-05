@@ -13,11 +13,9 @@ const RatingStar = ({ rating }) => {
 
   return (
     <>
-      <div className="product_rating">
-        <span>
-          {stars}({rating})
-        </span>
-      </div>
+      <span className="product_rating">
+        {stars}({rating})
+      </span>
     </>
   );
 };

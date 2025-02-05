@@ -23,6 +23,7 @@
   max-width: var(--max-width-1400);
   margin-inline: auto;
   padding: 2rem 1rem;
+  border-radius: 0.5rem;
 }
 
 .section_header {
@@ -127,7 +128,7 @@ nav {
 .header_container {
   min-height: 650px;
   background-color: var(--primary-color-light);
-  border-radius: 1rem;
+
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
