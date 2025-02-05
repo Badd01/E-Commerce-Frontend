@@ -26,18 +26,20 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="product_grid">
-      {categories.map((category) => (
-        <Link
-          key={category.name}
-          to={`categories/${category.path}`}
-          className=" categories_card"
-        >
-          <img src={category.image} alt={category.name} />
-          <h4>{category.name}</h4>
-        </Link>
-      ))}
-    </div>
+    <>
+      <div className="product_grid">
+        {categories.map((category) => (
+          <Link
+            key={category.name}
+            to={`categories/${category.path}`}
+            className=" categories_card"
+          >
+            <img src={category.image} alt={category.name} />
+            <h4>{category.name}</h4>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 };
 

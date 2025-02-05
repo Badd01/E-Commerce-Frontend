@@ -24,18 +24,20 @@ const cards = [
 
 const HeroSection = () => {
   return (
-    <div className="section_container hero_container">
-      {cards.map((card) => (
-        <div className="hero_card" key={card.id}>
-          <img src={card.image} alt={card.title} />
-          <div className="hero_content">
-            <p>{card.trend}</p>
-            <h4>{card.title}</h4>
-            <a href="#">Discover More</a>
+    <>
+      <div className="section_container hero_container">
+        {cards.map((card) => (
+          <div className="hero_card" key={card.id}>
+            <img src={card.image} alt={card.title} />
+            <div className="hero_content">
+              <p>{card.trend}</p>
+              <h4>{card.title}</h4>
+              <a href="#">Discover More</a>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   );
 };
 
