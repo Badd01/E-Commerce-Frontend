@@ -13,11 +13,9 @@ const TrendingProducts = () => {
   return (
     <section className="section_container product_container">
       <h2 className="section_header">Trending Products</h2>
-      <p className="section_subheader">Discover the Hottest Picks</p>
+      <p className="section_subheader mb-10">Discover the Hottest Picks</p>
 
-      <div className="mt-10">
-        <ProductCards products={products.slice(0, visibleProducts)} />
-      </div>
+      <ProductCards products={products.slice(0, visibleProducts)} />
 
       {/* load more */}
       <div className="product_btn">

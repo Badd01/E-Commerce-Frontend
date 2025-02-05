@@ -22,7 +22,7 @@
 .section_container {
   max-width: var(--max-width-1400);
   margin-inline: auto;
-  padding: 5rem 1rem;
+  padding: 2rem 1rem;
 }
 
 .section_header {
@@ -36,7 +36,7 @@
 
 .section_subheader {
   max-width: 500px;
-  margin: auto;
+  margin-inline: auto;
   color: var(--text-light);
   text-align: center;
 }
@@ -72,7 +72,7 @@ body {
 
 nav {
   max-width: var(--max-width-1400);
-  margin: auto;
+  margin-inline: auto;
   padding: 2rem 1rem;
   display: flex;
   align-items: center;
@@ -127,8 +127,7 @@ nav {
 .header_container {
   min-height: 650px;
   background-color: var(--primary-color-light);
-  border-bottom-left-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  border-radius: 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
@@ -166,14 +165,14 @@ nav {
 .header_image img {
   position: absolute;
   left: 50%;
-  bottom: -5rem;
+  bottom: -2rem;
   transform: translateX(-50%);
   max-width: 500px;
 }
 
 .categories_grid {
   max-width: var(--max-width-900);
-  margin: auto;
+  margin-inline: auto;
   margin-top: 4rem;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -186,7 +185,7 @@ nav {
 
 .categories_card img {
   max-width: 100px;
-  margin: auto;
+  margin-inline: auto;
   margin-bottom: 1rem;
   border: 5px solid var(--white);
   border-radius: 100%;
@@ -299,9 +298,9 @@ nav {
 .deals_image img {
   position: absolute;
   left: 50%;
-  bottom: -5rem;
+  bottom: -2rem;
   transform: translateX(-50%);
-  max-width: 550px;
+  max-width: 380px;
 }
 
 .deals_content {
@@ -360,7 +359,7 @@ nav {
 
 .banner_container {
   max-width: var(--max-width-900);
-  margin: auto;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
@@ -395,7 +394,7 @@ nav {
 
 .blog_grid {
   max-width: var(--max-width-900);
-  margin: auto;
+  margin-inline: auto;
   margin-top: 4rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -471,7 +470,7 @@ nav {
   color: var(--primary-color);
 }
 
-.instagram_grid {
+.socials_grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
@@ -495,7 +494,7 @@ nav {
   }
 
   .header_content {
-    margin: auto;
+    margin-inline: auto;
     text-align: center;
   }
 
@@ -517,7 +516,7 @@ nav {
   }
 
   .deals_content {
-    margin: auto;
+    margin-inline: auto;
     text-align: center;
   }
 
@@ -565,7 +564,7 @@ nav {
     grid-template-columns: repeat(1, 1fr);
   }
 
-  .instagram_grid {
+  .socials_grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
   }

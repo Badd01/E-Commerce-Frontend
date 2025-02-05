@@ -3,6 +3,10 @@ import Banner from "./Banner";
 import Categories from "./Categories";
 import HeroSection from "./HeroSection";
 import TrendingProducts from "../shop/TrendingProducts";
+import DealsSection from "./DealsSection";
+import PromoBanner from "./PromoBanner";
+import Blog from "../blogs/Blog";
+import Footer from "../../components/Footer";
 
 const Home = () => {
   return (
@@ -11,6 +15,10 @@ const Home = () => {
       <Categories />
       <HeroSection />
       <TrendingProducts />
+      <DealsSection />
+      <PromoBanner />
+      <Blog />
+      <Footer />
     </>
   );
 };
