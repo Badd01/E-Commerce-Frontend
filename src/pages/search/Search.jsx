@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Footer from "../../components/Footer";
 import ProductCards from "../shop/ProductCards";
-import products from "../../data/products.json";
+import productsData from "../../data/products.json";
 
 const Search = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,7 +10,7 @@ const Search = () => {
   const handleSearch = () => {
     const query = searchQuery.toLowerCase() || null;
 
-    const filtered = products.filter(
+    const filtered = productsData.filter(
       (product) =>
         product.name.toLowerCase().includes(query) ||
         product.description.toLowerCase().includes(query)
