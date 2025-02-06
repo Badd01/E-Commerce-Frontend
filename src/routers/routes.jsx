@@ -3,6 +3,7 @@ import App from "../App";
 import Home from "../pages/home/Home";
 import CategoryPage from "../pages/category/CategoryPage";
 import Search from "../pages/search/Search";
+import ShopPage from "../pages/shop/ShopPage";
 
 let router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ let router = createBrowserRouter([
       {
         path: "/search",
         Component: Search,
+      },
+      {
+        path: "/shop",
+        Component: ShopPage,
       },
     ],
   },
