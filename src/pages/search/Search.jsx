@@ -43,10 +43,7 @@ const Search = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleKeyDown}
           />
-          <button
-            className="w-full cursor-pointer md:w-auto py-2 px-8 bg-primary text-white rounded-sm"
-            onClick={handleSearch}
-          >
+          <button className="btn" onClick={handleSearch}>
             Search
           </button>
         </div>

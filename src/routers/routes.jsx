@@ -4,6 +4,7 @@ import Home from "../pages/home/Home";
 import CategoryPage from "../pages/category/CategoryPage";
 import Search from "../pages/search/Search";
 import ShopPage from "../pages/shop/ShopPage";
+import SingleProduct from "../pages/shop/productDetails/SingleProduct";
 
 let router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ let router = createBrowserRouter([
       {
         path: "/shop",
         Component: ShopPage,
+      },
+      {
+        path: "/shop/:id",
+        Component: SingleProduct,
       },
     ],
   },

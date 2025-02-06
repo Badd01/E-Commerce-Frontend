@@ -81,10 +81,7 @@ const ShopFiltering = ({
             </label>
           ))}
         </div>
-        <button
-          onClick={clearFilters}
-          className="bg-primary py-1 px-4 text-white rounded-sm cursor-pointer"
-        >
+        <button onClick={clearFilters} className="btn">
           Clear All Filters
         </button>
       </div>

@@ -19,6 +19,10 @@
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 .section_container {
   max-width: var(--max-width-1400);
   margin-inline: auto;
@@ -50,7 +54,6 @@
   color: var(--white);
   background-color: var(--primary-color);
   border-radius: 5px;
-  cursor: pointer;
   transition: 0.3s;
 }
 
