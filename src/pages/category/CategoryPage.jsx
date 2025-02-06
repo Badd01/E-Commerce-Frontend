@@ -3,14 +3,14 @@ import Footer from "../../components/Footer";
 import { useParams } from "react-router";
 import ProductCards from "../shop/ProductCards";
 
-import products from "../../data/products.json";
+import productsData from "../../data/products.json";
 
 const CategoryPage = () => {
   const { categoryName } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    const filtered = products.filter(
+    const filtered = productsData.filter(
       (product) => product.category === categoryName.toLowerCase()
     );
 
