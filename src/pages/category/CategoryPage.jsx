@@ -31,7 +31,6 @@ const CategoryPage = () => {
       <div className="section_container">
         <ProductCards products={filteredProducts} />
       </div>
-      <Footer />
     </>
   );
 };

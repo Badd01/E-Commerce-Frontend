@@ -11,23 +11,21 @@ const TrendingProducts = () => {
   };
 
   return (
-    <>
-      <section className="section_container product_container">
-        <h2 className="section_header">Trending Products</h2>
-        <p className="section_subheader mb-10">Discover the Hottest Picks</p>
+    <section className="section_container product_container">
+      <h2 className="section_header">Trending Products</h2>
+      <p className="section_subheader mb-10">Discover the Hottest Picks</p>
 
-        <ProductCards products={productsData.slice(0, visibleProducts)} />
+      <ProductCards products={productsData.slice(0, visibleProducts)} />
 
-        {/* load more */}
-        <div className="product_btn">
-          {visibleProducts < productsData.length && (
-            <button className="btn" onClick={loadMoreProducts}>
-              Load More
-            </button>
-          )}
-        </div>
-      </section>
-    </>
+      {/* load more */}
+      <div className="product_btn">
+        {visibleProducts < productsData.length && (
+          <button className="btn" onClick={loadMoreProducts}>
+            Load More
+          </button>
+        )}
+      </div>
+    </section>
   );
 };
 

@@ -61,9 +61,15 @@ button {
   background-color: var(--primary-color-dark);
 }
 
+.order_btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  margin-top: 8px;
+}
+
 img {
   width: 100%;
-  display: flex;
 }
 
 a {
@@ -172,6 +178,28 @@ nav {
   bottom: -2rem;
   transform: translateX(-50%);
   max-width: 500px;
+}
+
+.cart_container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: opacity 300ms;
+  z-index: 1000;
+}
+
+.cart_content {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: clamp(200px, 40%, 400px);
+  height: 100%;
+  background-color: white;
+  overflow-y: auto;
+  transition: transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .categories_grid {

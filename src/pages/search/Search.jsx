@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Footer from "../../components/Footer";
 import ProductCards from "../shop/ProductCards";
 import productsData from "../../data/products.json";
 
@@ -50,7 +49,6 @@ const Search = () => {
 
         <ProductCards products={filteredProducts} />
       </section>
-      <Footer />
     </>
   );
 };
