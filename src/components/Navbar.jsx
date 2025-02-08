@@ -3,13 +3,18 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import CartModal from "../pages/shop/CartModal";
 import { RiSearchLine, RiUser3Line, RiShoppingCartLine } from "react-icons/ri";
+import Overlay from "./Overlay";
+import LoginModal from "../pages/auth/LoginModal";
 
-import {} from "react-icons/ri";
 const Navbar = () => {
   const products = useSelector((state) => state.cart.products);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const hanldeCartToggle = () => {
+  const handleCartToggle = () => {
     setIsCartOpen(!isCartOpen);
+  };
+  const handleLoginToggle = () => {
+    setIsLoginOpen(!isLoginOpen);
   };
 
   return (
@@ -45,14 +50,10 @@ const Navbar = () => {
               <RiSearchLine />
             </Link>
           </span>
-          <span>
-            <Link to="/login">
-              <RiUser3Line />
-            </Link>
-          </span>
+
           <span>
             <button
-              onClick={hanldeCartToggle}
+              onClick={handleCartToggle}
               className="hover:text-primary flex items-center"
             >
               <RiShoppingCartLine />
@@ -61,16 +62,30 @@ const Navbar = () => {
               </sup>
             </button>
           </span>
+
+          <span>
+            <button
+              onClick={handleLoginToggle}
+              className="flex items-center gap-1 bg-primary hover:bg-primary-dark rounded-sm p-2 text-white"
+            >
+              <RiUser3Line />
+              <span>Login</span>
+            </button>
+          </span>
         </div>
       </nav>
 
-      {isCartOpen && (
+      <Overlay isOpen={isLoginOpen} isForm={true}>
+        <LoginModal isOpen={isLoginOpen} onClose={handleLoginToggle} />
+      </Overlay>
+
+      <Overlay isOpen={isCartOpen} isForm={false}>
         <CartModal
           products={products}
           isOpen={isCartOpen}
-          onClose={hanldeCartToggle}
+          onClose={handleCartToggle}
         />
-      )}
+      </Overlay>
     </header>
   );
 };

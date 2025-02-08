@@ -5,7 +5,7 @@ import images from "../../assets/images.js";
 const Banner = () => {
   return (
     <div className="section_container header_container">
-      <div className="header_content z-30">
+      <div className="header_content z-10">
         <h4 className="uppercase">up to 30% discount on</h4>
         <h1>Fashion</h1>
         <p>
