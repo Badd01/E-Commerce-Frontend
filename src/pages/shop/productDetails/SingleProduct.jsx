@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../../redux/features/cart/cartSlice";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RiArrowRightSLine } from "react-icons/ri";
 
 const SingleProduct = () => {
   const { id } = useParams();
@@ -19,20 +20,20 @@ const SingleProduct = () => {
     <>
       <section className="section_container bg-primary-light">
         <h2 className="section_header">Single Product Page</h2>
-        <div className="section_subheader space-x-2">
+        <div className="section_subheader space-x-2 flex items-center justify-center">
           <span className="hover:text-primary">
             <Link to="/" className="capitalize">
               home
             </Link>
           </span>
-          <i className="ri-arrow-right-s-line"></i>
+          <RiArrowRightSLine />
           <span className="hover:text-primary">
             <Link to="/shop" className=" capitalize">
               shop
             </Link>
           </span>
-          <i className="ri-arrow-right-s-line"></i>
-          <span className="hover:text-primary">shop</span>
+          <RiArrowRightSLine />
+          <span className="hover:text-primary">{item.name}</span>
         </div>
       </section>
 
@@ -55,18 +56,18 @@ const SingleProduct = () => {
             <p className="text-gray-400 mb-4"> {item.description}</p>
 
             <div>
-              <p>
+              <p className=" capitalize">
                 <strong>Category: </strong>
                 {item.category}
               </p>
-              <p>
+              <p className=" capitalize">
                 <strong>Color: </strong>
                 {item.color}
               </p>
-              <div className="flex gap-1 items-center">
+              <p className="flex gap-1 items-center">
                 <strong>Rating: </strong>
                 <RatingStar rating={item.rating} />
-              </div>
+              </p>
             </div>
 
             <button

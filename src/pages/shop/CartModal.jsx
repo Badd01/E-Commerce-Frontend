@@ -5,6 +5,7 @@ import {
   removeFromCart,
   updateQuantity,
 } from "../../redux/features/cart/cartSlice";
+import { RiXrpFill } from "react-icons/ri";
 
 const CartModal = ({ products, isOpen, onClose }) => {
   const dispatch = useDispatch();
@@ -35,9 +36,9 @@ const CartModal = ({ products, isOpen, onClose }) => {
             <h4 className="text-xl font-semibold">Your Cart</h4>
             <button
               onClick={() => onClose()}
-              className="hover:scale-115 transition-all duration-300"
+              className="hover:scale-115 transition-all duration-300  bg-black hover:bg-red-500 rounded-sm p-1 text-white"
             >
-              <i className="ri-xrp-fill bg-black hover:bg-red-500 rounded-sm p-1 text-white"></i>
+              <RiXrpFill />
             </button>
           </div>
 
@@ -51,9 +52,9 @@ const CartModal = ({ products, isOpen, onClose }) => {
                   {/* Button remove */}
                   <button
                     onClick={(e) => handleRemove(e, item._id)}
-                    className="absolute top-0 right-0 z-10 hover:scale-115 transition-all duration-300"
+                    className="absolute top-0 right-0 z-10 hover:scale-115 transition-all duration-300 bg-primary text-white p-0.5 rounded-sm"
                   >
-                    <i className="ri-xrp-fill bg-primary text-white p-0.5 rounded-sm"></i>
+                    <RiXrpFill />
                   </button>
 
                   {/* Item on cart */}

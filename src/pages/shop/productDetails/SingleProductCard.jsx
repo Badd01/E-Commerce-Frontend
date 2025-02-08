@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { useDispatch } from "react-redux";
 import RatingStar from "../../../components/RatingStar";
 import { addToCart } from "../../../redux/features/cart/cartSlice";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 const SingleProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -27,8 +28,9 @@ const SingleProductCard = ({ product }) => {
               e.stopPropagation();
               handleAddToCart(product);
             }}
+            className="bg-primary p-1 text-white rounded-md hover:bg-primary-dark"
           >
-            <i className="ri-shopping-cart-line bg-primary p-1.5 text-white rounded-md hover:bg-primary-dark"></i>
+            <RiShoppingCartLine />
           </button>
         </div>
       </div>

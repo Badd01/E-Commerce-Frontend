@@ -1,25 +1,27 @@
 import React from "react";
-
+import { AiFillTikTok, AiFillInstagram, AiFillFacebook } from "react-icons/ai";
+import { SiShopee } from "react-icons/si";
+import { RiMapPinFill, RiMailFill, RiPhoneFill } from "react-icons/ri";
 const Footer = () => {
   return (
     <footer className="section_container footer_container">
       <div className="footer_col">
         <h4 className="uppercase"> contact info</h4>
-        <p>
+        <p className="flex items-center">
           <span>
-            <i className="ri-map-pin-fill"></i>
+            <RiMapPinFill />
           </span>
           123 Dai Co Viet, Hai Ba Trung, Ha Noi
         </p>
-        <p>
+        <p className="flex items-center">
           <span>
-            <i className="ri-mail-fill"></i>
+            <RiMailFill />
           </span>
           support@fashion.com
         </p>
-        <p>
+        <p className="flex items-center">
           <span>
-            <i className="ri-phone-fill"></i>
+            <RiPhoneFill />
           </span>
           (+84) 123456789
         </p>
@@ -43,21 +45,26 @@ const Footer = () => {
       </div>
 
       <div className="footer_bar">
-        <h4 className="uppercase">our socials</h4>
-        <div className="socials_grid">
-          <a href="/">
-            <span>
-              <i className="ri-instagram-fill text-5xl text-red-500"></i>
+        <h4 className="uppercase">our links</h4>
+        <div className="socials_grid text-5xl ">
+          <a href="https://www.instagram.com">
+            <span className="text-red-500">
+              <AiFillInstagram />
             </span>
           </a>
-          <a href="/">
-            <span>
-              <i className="ri-facebook-box-fill text-blue-700 text-5xl"></i>
+          <a href="https://www.facebook.com">
+            <span className="text-blue-500">
+              <AiFillFacebook />
             </span>
           </a>
-          <a href="/">
+          <a href="https://www.tiktok.com">
             <span>
-              <i className="ri-tiktok-fill text-5xl text-black"></i>
+              <AiFillTikTok />
+            </span>
+          </a>
+          <a href="https://shopee.vn" className="text-orange-500">
+            <span>
+              <SiShopee />
             </span>
           </a>
         </div>

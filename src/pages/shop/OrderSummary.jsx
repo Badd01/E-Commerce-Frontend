@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/features/cart/cartSlice";
+import { RiDeleteBin7Line, RiBankCardLine } from "react-icons/ri";
 
 const OrderSummary = () => {
   const dispatch = useDispatch();
@@ -32,14 +33,14 @@ const OrderSummary = () => {
                 e.stopPropagation();
                 handleClearCart();
               }}
-              className="order_btn bg-red-600"
+              className="order_btn bg-red-600 flex items-center justify-center gap-2"
             >
               Clear
-              <i className="ri-delete-bin-7-line ml-1"></i>
+              <RiDeleteBin7Line />
             </button>
-            <button className="order_btn bg-green-600">
+            <button className="order_btn bg-green-600 flex items-center justify-center gap-2">
               Checkout
-              <i className="ri-bank-card-line ml-1"></i>
+              <RiBankCardLine />
             </button>
           </div>
         </div>

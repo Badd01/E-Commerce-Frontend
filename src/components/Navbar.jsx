@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router";
 import CartModal from "../pages/shop/CartModal";
+import { RiSearchLine, RiUser3Line, RiShoppingCartLine } from "react-icons/ri";
 
+import {} from "react-icons/ri";
 const Navbar = () => {
   const products = useSelector((state) => state.cart.products);
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -40,18 +42,21 @@ const Navbar = () => {
         <div className="nav_icons relative">
           <span>
             <Link to="/search">
-              <i className="ri-search-line"></i>
+              <RiSearchLine />
             </Link>
           </span>
           <span>
             <Link to="/login">
-              <i className="ri-user-line"></i>
+              <RiUser3Line />
             </Link>
           </span>
           <span>
-            <button onClick={hanldeCartToggle} className="hover:text-primary">
-              <i className="ri-shopping-cart-line"></i>
-              <sup className="text-sm inline-block px-1.5 text-white rounded-full bg-primary text-center">
+            <button
+              onClick={hanldeCartToggle}
+              className="hover:text-primary flex items-center"
+            >
+              <RiShoppingCartLine />
+              <sup className="text-sm px-1 text-white rounded-full bg-primary text-center">
                 {products.length}
               </sup>
             </button>
