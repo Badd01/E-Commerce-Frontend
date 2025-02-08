@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
   products: [],
@@ -20,8 +21,9 @@ const cartSlice = createSlice({
 
       if (!isExist) {
         state.products.push({ ...action.payload, quantity: 1 });
+        toast.success("Added successfully");
       } else {
-        console.log("Items already added");
+        toast.info("Already added");
       }
 
       state.selectedItems = setSelectedItems(state);

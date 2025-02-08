@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Footer from "../../components/Footer";
 import { useParams } from "react-router";
 import ProductCards from "../shop/ProductCards";
 

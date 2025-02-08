@@ -26,7 +26,7 @@ const Categories = () => {
     },
   ];
   return (
-    <div className="product_grid">
+    <div className="categories_grid">
       {categories.map((category) => (
         <Link
           key={category.name}

@@ -42,7 +42,7 @@ const Footer = () => {
         <a href="/">Women</a>
       </div>
 
-      <div className="footer_col">
+      <div className="footer_bar">
         <h4 className="uppercase">our socials</h4>
         <div className="socials_grid">
           <a href="/">
