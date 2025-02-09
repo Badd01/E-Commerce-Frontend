@@ -46,14 +46,14 @@ button {
 }
 
 .btn {
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   outline: none;
   border: none;
   font-size: 1rem;
   color: var(--white);
   background-color: var(--primary-color);
   border-radius: 5px;
-  transition: 0.3s;
+  transition: background-color 0.5s;
 }
 
 .btn:hover {
@@ -207,7 +207,7 @@ nav {
 }
 
 .cart-modal {
-  width: clamp(200px, 40%, 400px);
+  width: clamp(250px, 40%, 400px);
   height: 100%;
   background: white;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
@@ -226,9 +226,9 @@ nav {
 }
 
 .form-modal {
-  width: clamp(200px, 40%, 400px);
+  width: clamp(300px, 80%, 400px);
   background: white;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.4);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
   border-radius: 1rem;
   display: flex;
   overflow-y: auto;
@@ -641,10 +641,4 @@ nav {
 
 .nav_icons span a.dropdown-items {
   font-size: 16px;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }

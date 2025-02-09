@@ -21,7 +21,7 @@ const CartModal = ({ products, isOpen, onClose }) => {
   };
 
   return (
-    <div className={`cart-modal ${isOpen ? "slide-in" : "slide-out"}`}>
+    <div className={`cart-modal  ${isOpen ? "slide-in" : "slide-out"}`}>
       <div className="p-4 mt-4">
         <div className="flex justify-between items-center mb-4">
           <h4 className="text-xl font-semibold">Your Cart</h4>

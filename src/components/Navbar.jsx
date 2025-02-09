@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import CartModal from "../pages/shop/CartModal";
 import { RiSearchLine, RiUser3Line, RiShoppingCartLine } from "react-icons/ri";
 import Overlay from "./Overlay";
-import LoginModal from "../pages/auth/LoginModal";
+import SignInModal from "../pages/auth/SignInModal";
 
 const Navbar = () => {
   const products = useSelector((state) => state.cart.products);
@@ -15,6 +15,17 @@ const Navbar = () => {
   };
   const handleLoginToggle = () => {
     setIsLoginOpen(!isLoginOpen);
+  };
+
+  const handleClose = (e) => {
+    if (e.target === e.currentTarget) {
+      if (isLoginOpen) {
+        handleLoginToggle(e);
+      }
+      if (isCartOpen) {
+        handleCartToggle(e);
+      }
+    }
   };
 
   return (
@@ -66,7 +77,7 @@ const Navbar = () => {
           <span>
             <button
               onClick={handleLoginToggle}
-              className="flex items-center gap-1 bg-primary hover:bg-primary-dark rounded-sm p-2 text-white"
+              className="flex items-center gap-1 btn"
             >
               <RiUser3Line />
               <span>Login</span>
@@ -75,11 +86,11 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <Overlay isOpen={isLoginOpen} isForm={true}>
-        <LoginModal isOpen={isLoginOpen} onClose={handleLoginToggle} />
+      <Overlay isOpen={isLoginOpen} isForm={true} onClose={handleClose}>
+        <SignInModal isOpen={isLoginOpen} onClose={handleLoginToggle} />
       </Overlay>
 
-      <Overlay isOpen={isCartOpen} isForm={false}>
+      <Overlay isOpen={isCartOpen} isForm={false} onClose={handleClose}>
         <CartModal
           products={products}
           isOpen={isCartOpen}

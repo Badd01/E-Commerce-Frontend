@@ -48,12 +48,12 @@ const Footer = () => {
         <h4 className="uppercase">our links</h4>
         <div className="socials_grid text-5xl ">
           <a href="https://www.instagram.com">
-            <span className="text-red-500">
+            <span className="text-red-600">
               <AiFillInstagram />
             </span>
           </a>
           <a href="https://www.facebook.com">
-            <span className="text-blue-500">
+            <span className="text-blue-600">
               <AiFillFacebook />
             </span>
           </a>
@@ -62,7 +62,7 @@ const Footer = () => {
               <AiFillTikTok />
             </span>
           </a>
-          <a href="https://shopee.vn" className="text-orange-500">
+          <a href="https://shopee.vn" className="text-orange-600">
             <span>
               <SiShopee />
             </span>
