@@ -1,4 +1,3 @@
-import React from "react";
 import { RiStarFill, RiStarLine } from "react-icons/ri";
 const RatingStar = ({ rating }) => {
   const stars = [];

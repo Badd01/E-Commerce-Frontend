@@ -1,10 +1,10 @@
-import React from "react";
-
-const Overlay = ({ isOpen, isForm, onClose, children }) => {
+const Overlay = ({ isOpen, onClose, children }) => {
   return (
     <div
       onClick={onClose}
-      className={`overlay ${isForm ? "center" : "end"} ${isOpen ? "show" : ""}`}
+      className={`fixed inset-0 flex items-center justify-end opacity-0 z-30 transision-all duration-500 invisible  ${
+        isOpen ? " visible opacity-100 bg-black/50" : ""
+      }`}
     >
       {children}
     </div>

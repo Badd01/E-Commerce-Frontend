@@ -1,4 +1,3 @@
-import React from "react";
 import OrderSummary from "./OrderSummary";
 import { useDispatch } from "react-redux";
 import {
@@ -21,7 +20,11 @@ const CartModal = ({ products, isOpen, onClose }) => {
   };
 
   return (
-    <div className={`cart-modal  ${isOpen ? "slide-in" : "slide-out"}`}>
+    <div
+      className={`flex bg-white rounded-l-md h-full overflow-y-auto flex-col transition-transform duration-500 w-[350px]  ${
+        isOpen ? " translate-x-0" : " translate-x-full"
+      }`}
+    >
       <div className="p-4 mt-4">
         <div className="flex justify-between items-center mb-4">
           <h4 className="text-xl font-semibold">Your Cart</h4>

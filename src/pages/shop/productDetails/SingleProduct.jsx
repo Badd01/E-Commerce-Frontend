@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, useParams } from "react-router";
 import productsData from "../../../data/products.json";
 import RatingStar from "../../../components/RatingStar";

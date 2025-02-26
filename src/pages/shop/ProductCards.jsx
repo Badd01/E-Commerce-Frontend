@@ -1,4 +1,3 @@
-import React from "react";
 import SingleProductCard from "./productDetails/SingleProductCard";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

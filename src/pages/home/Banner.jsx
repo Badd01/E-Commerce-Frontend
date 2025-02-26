@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router";
 import images from "../../assets/images.js";
 
@@ -7,7 +6,7 @@ const Banner = () => {
     <div className="section_container header_container">
       <div className="header_content z-10">
         <h4 className="uppercase">up to 30% discount on</h4>
-        <h1>Fashion</h1>
+        <h1>Youth Fashion</h1>
         <p>
           Discover trendy, high-quality, and affordable fashion for every
           occasion. Elevate your style with our latest collections!

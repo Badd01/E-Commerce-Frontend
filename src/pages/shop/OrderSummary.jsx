@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../../redux/features/cart/cartSlice";
 import { RiDeleteBin7Line, RiBankCardLine } from "react-icons/ri";

@@ -5,6 +5,8 @@ import CategoryPage from "../pages/category/CategoryPage";
 import Search from "../pages/search/Search";
 import ShopPage from "../pages/shop/ShopPage";
 import SingleProduct from "../pages/shop/productDetails/SingleProduct";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
 
 let router = createBrowserRouter([
   {
@@ -32,6 +34,14 @@ let router = createBrowserRouter([
         Component: SingleProduct,
       },
     ],
+  },
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/register",
+    Component: Register,
   },
 ]);
 

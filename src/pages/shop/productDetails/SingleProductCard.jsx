@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router";
 import { useDispatch } from "react-redux";
 import RatingStar from "../../../components/RatingStar";
