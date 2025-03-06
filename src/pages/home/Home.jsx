@@ -1,18 +1,16 @@
 import Banner from "./Banner";
 import Categories from "./Categories";
-import HeroSection from "./HeroSection";
-import TrendingProducts from "../shop/TrendingProducts";
-import DealsSection from "./DealsSection";
+// import NewestProducts from "./NewestProducts";
 import PromoBanner from "./PromoBanner";
+// import PopularProducts from "./PopularProduct";
 
 const Home = () => {
   return (
     <>
       <Banner />
       <Categories />
-      <HeroSection />
-      <TrendingProducts />
-      <DealsSection />
+      {/* <NewestProducts />
+      <PopularProducts /> */}
       <PromoBanner />
     </>
   );

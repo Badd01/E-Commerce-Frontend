@@ -1,24 +1,8 @@
-import OrderSummary from "./OrderSummary";
-import { useDispatch } from "react-redux";
-import {
-  removeFromCart,
-  updateQuantity,
-} from "../../redux/features/cart/cartSlice";
+// import OrderSummary from "./OrderSummary";
+
 import { RiCloseFill } from "react-icons/ri";
 
-const CartModal = ({ products, isOpen, onClose }) => {
-  const dispatch = useDispatch();
-
-  const handleQuantity = (type, id) => {
-    const payload = { type, id };
-    dispatch(updateQuantity(payload));
-  };
-
-  const handleRemove = (e, id) => {
-    e.preventDefault();
-    dispatch(removeFromCart({ id }));
-  };
-
+const CartModal = ({ isOpen, onClose }) => {
   return (
     <div
       className={`flex bg-white rounded-l-md h-full overflow-y-auto flex-col transition-transform duration-500 w-[350px]  ${
@@ -38,12 +22,13 @@ const CartModal = ({ products, isOpen, onClose }) => {
 
         {/* cart details */}
         <div>
-          {products.length === 0 ? (
+          <p>Card is empty</p>
+          {/* {products.length === 0 ? (
             <p>Card is empty</p>
           ) : (
             products.map((item, index) => (
               <div key={index} className="relative">
-                {/* Button remove */}
+      
                 <button
                   onClick={(e) => handleRemove(e, item._id)}
                   className="absolute top-0 right-0 z-10 hover:scale-115 transition-all duration-300 bg-primary text-white p-0.5 rounded-sm"
@@ -51,8 +36,7 @@ const CartModal = ({ products, isOpen, onClose }) => {
                   <RiCloseFill />
                 </button>
 
-                {/* Item on cart */}
-                {/* id, image  */}
+      
                 <div className="flex flex-col shadow-md p-2 mb-4 md:flex-row md:items-center md:gap-4 md:p-5 ">
                   <div className="flex ">
                     <p className="flex items-center">
@@ -66,7 +50,7 @@ const CartModal = ({ products, isOpen, onClose }) => {
                       className="!size-15 object-cover"
                     />
                   </div>
-                  {/* price, quantity */}
+             
                   <div>
                     <h5 className="text-lg font-medium">{item.name}</h5>
                     <p className="text-gray-600 text-sm">
@@ -95,11 +79,11 @@ const CartModal = ({ products, isOpen, onClose }) => {
                 </div>
               </div>
             ))
-          )}
+          )} */}
         </div>
 
         {/* calculation money*/}
-        {products.length > 0 && <OrderSummary />}
+        {/* {products.length > 0 && <OrderSummary />} */}
       </div>
     </div>
   );

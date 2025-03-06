@@ -6,10 +6,6 @@
   --container-mini: 900px;
   --color-primary: oklch(0.852 0.199 91.936);
   --color-secondary: oklch(0.645 0.246 16.439);
-  --color-primary-dark: #d23141;
-  --color-primary-light: #f4e5ec;
-  --color-dark: #0f172a;
-  --color-light: #64748b;
-  --color-extra-light: #f8fafc;
-  --font-display: "Playfair Display", "sans-serif";
+  --color-dark: #101828;
+  --color-dark-2: #4a5565;
 }

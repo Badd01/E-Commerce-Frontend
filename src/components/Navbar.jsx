@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
 import CartModal from "../pages/shop/CartModal";
 import {
@@ -10,33 +9,42 @@ import {
   RiMenu2Fill,
 } from "react-icons/ri";
 import Overlay from "./Overlay";
-import { useLogoutUserMutation } from "../redux/features/auth/authApi";
-import { logout } from "../redux/features/auth/authSlice";
+import { useLogoutUserMutation } from "../redux/api/authApi";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/features/authSlice";
 
 const Navbar = () => {
-  const products = useSelector((state) => state.cart.products);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isNavDropdown, setIsNavDropdown] = useState(false);
+  const [isUserDropdown, setIsUserDropdown] = useState(false);
+  const user = useSelector((state) => state.auth.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [logoutUser] = useLogoutUserMutation();
+
+  const handleClose = (e) => {
+    if (e.target === e.currentTarget) setIsCartOpen(false);
+  };
+
   const handleCartToggle = () => {
     setIsCartOpen(!isCartOpen);
   };
 
-  const handleClose = (e) => {
-    if (isCartOpen) {
-      handleCartToggle(e);
+  const handleLogout = async () => {
+    try {
+      await logoutUser().unwrap();
+      dispatch(logout());
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging out: ", error);
     }
   };
 
-  // Dropdown after login
-  const [isDropdown, setIsDropdown] = useState(false);
-  const handleDropdownToggle = () => {
-    setIsDropdown(!isDropdown);
-  };
-  const { user } = useSelector((state) => state.auth);
   const dropdownMenu =
     user?.role === "Admin"
       ? [
           {
-            label: "Quản lý",
+            label: "Dashboard",
             path: "#",
           },
           {
@@ -59,29 +67,36 @@ const Navbar = () => {
           },
         ];
 
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const [logoutUser] = useLogoutUserMutation();
-  const handleLogout = async () => {
-    try {
-      await logoutUser().unwrap();
-      dispatch(logout());
-      navigate("/");
-    } catch (error) {
-      console.error("Error: ", error);
-    }
-  };
-
   return (
-    <header className="bg-gray-900 text-white shadow-lg">
-      <nav>
-        <div className="flex items-center text-2xl md:hidden ">
-          <button>
+    <header className="bg-dark text-white shadow-lg">
+      <nav className="max-w-maxi mx-auto flex items-center justify-between bg-dark px-4 py-2">
+        <div
+          onMouseEnter={() => setIsNavDropdown(true)}
+          onMouseLeave={() => setIsNavDropdown(false)}
+          className="relative md:hidden"
+        >
+          <button className=" flex items-center text-xl">
             <RiMenu2Fill />
           </button>
+
+          {isNavDropdown && (
+            <div className="absolute top-full left-0 w-50 bg-white shadow-lg rounded-lg py-2 font-semibold">
+              <ul>
+                <li className="block px-4 py-2 text-black hover:text-primary hover:bg-gray-100">
+                  <Link to="/">Trang chủ</Link>
+                </li>
+                <li className="block px-4 py-2 text-black hover:text-primary hover:bg-gray-100">
+                  <Link to="/shop">Sản phẩm mới về</Link>
+                </li>
+                <li className="block px-4 py-2 text-black hover:text-primary hover:bg-gray-100">
+                  <Link to="/contact">Danh mục sản phẩm</Link>
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
 
-        <div className="text-3xl text-yellow-400 flex items-center font-bold font-serif">
+        <div className="text-3xl text-yellow-400 flex items-center font-bold ">
           <Link to="/">
             EComm<span className="text-secondary">.</span>
           </Link>
@@ -104,8 +119,8 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className="items-center flex justify-end relative  gap-4 md:gap-10 ">
-          <span className="flex items-center hover:text-primary ">
+        <div className=" flex items-center justify-end relative  gap-3 sm:gap-7 ">
+          <div className="flex items-center hover:text-primary ">
             <button
               title="Tìm kiếm"
               className="text-xl"
@@ -113,63 +128,66 @@ const Navbar = () => {
             >
               <RiSearchLine />
             </button>
-          </span>
+          </div>
 
-          <span className="flex items-center hover:text-primary ">
+          <div className="flex items-center hover:text-primary ">
             <button
               title="Giỏ hàng"
               className="flex text-xl"
               onClick={handleCartToggle}
             >
               <RiShoppingCartLine />
-              <sup className="text-sm px-1 text-white rounded-full bg-primary text-center">
-                {products.length}
+              <sup className="flex items-center justify-center text-sm px-1 text-white rounded-full bg-primary text-center">
+                0{/* {products.length} */}
               </sup>
             </button>
-          </span>
+          </div>
+          {user ? (
+            <div
+              onMouseEnter={() => setIsUserDropdown(true)}
+              onMouseLeave={() => setIsUserDropdown(false)}
+              className="relative "
+            >
+              <button className="text-xl  flex items-center hover:text-primary">
+                <RiUserShared2Line />
+                <span className="text-sm ml-1">Hi, {user.name}</span>
+              </button>
 
-          <span className="flex items-center hover:text-primary ">
-            {user ? (
-              <button>
-                <span onClick={handleDropdownToggle}>
-                  <RiUserShared2Line />
-                </span>
-                {isDropdown && (
-                  <div className="top-10 right-0 bg-white border border-black rounded-md z-20 absolute">
-                    <ul
-                      className="px-3 py-2"
-                      onMouseLeave={() => setIsDropdown(false)}
-                    >
-                      {dropdownMenu.map((item, index) => (
-                        <li key={index} className="relative p-1.5 text-black ">
-                          <Link to={item.path}>{item.label}</Link>
-                        </li>
-                      ))}
-
-                      <li className="p-1.5 text-black">
-                        <Link onClick={handleLogout}>Đăng xuất</Link>
+              {isUserDropdown && (
+                <div className="absolute top-full right-0 w-50 bg-white shadow-lg rounded-lg py-2 font-semibold">
+                  <ul>
+                    {dropdownMenu.map((item, index) => (
+                      <li
+                        key={index}
+                        className="block px-4 py-2 text-black hover:text-primary hover:bg-gray-100"
+                      >
+                        <Link to={item.path}>{item.label}</Link>
                       </li>
-                    </ul>
-                  </div>
-                )}
+                    ))}
+
+                    <li className="block px-4 py-2 text-black hover:text-primary hover:bg-gray-100">
+                      <button onClick={handleLogout}>Đăng xuất</button>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="flex items-center hover:text-primary ">
+              <button
+                onClick={() => navigate("/auth/login")}
+                className="text-xl"
+                title="Đăng nhập"
+              >
+                <RiUserReceivedLine />
               </button>
-            ) : (
-              <button className="text-xl" title="Đăng nhập">
-                <Link to="/login">
-                  <RiUserReceivedLine />
-                </Link>
-              </button>
-            )}
-          </span>
+            </div>
+          )}
         </div>
       </nav>
 
       <Overlay isOpen={isCartOpen} isForm={false} onClose={handleClose}>
-        <CartModal
-          products={products}
-          isOpen={isCartOpen}
-          onClose={handleCartToggle}
-        />
+        <CartModal isOpen={isCartOpen} onClose={handleCartToggle} />
       </Overlay>
     </header>
   );

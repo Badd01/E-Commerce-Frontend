@@ -1,56 +1,56 @@
-import React, { useState } from "react";
-import ProductCards from "../shop/ProductCards";
-import productsData from "../../data/products.json";
+// import { useState } from "react";
+// import ProductCards from "../shop/ProductCards";
+// import productsData from "../../data/products.json";
 
-const Search = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [filteredProducts, setFilteredProducts] = useState([]);
+// const Search = () => {
+//   const [searchQuery, setSearchQuery] = useState("");
+//   const [filteredProducts, setFilteredProducts] = useState([]);
 
-  const handleSearch = () => {
-    const query = searchQuery.toLowerCase() || null;
+//   const handleSearch = () => {
+//     const query = searchQuery.toLowerCase() || null;
 
-    const filtered = productsData.filter(
-      (product) =>
-        product.name.toLowerCase().includes(query) ||
-        product.description.toLowerCase().includes(query)
-    );
+//     const filtered = productsData.filter(
+//       (product) =>
+//         product.name.toLowerCase().includes(query) ||
+//         product.description.toLowerCase().includes(query)
+//     );
 
-    setFilteredProducts(filtered);
-  };
+//     setFilteredProducts(filtered);
+//   };
 
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter") {
-      handleSearch();
-    }
-  };
-  return (
-    <>
-      <section className="section_container bg-primary-light">
-        <h2 className="section_header capitalize">Search Products</h2>
-        <p className="section_subheader">
-          Elevate your style with our latest collections!
-        </p>
-      </section>
+//   const handleKeyDown = (event) => {
+//     if (event.key === "Enter") {
+//       handleSearch();
+//     }
+//   };
+//   return (
+//     <>
+//       <section className="section_container bg-primary-light">
+//         <h2 className="section_header capitalize">Search Products</h2>
+//         <p className="section_subheader">
+//           Elevate your style with our latest collections!
+//         </p>
+//       </section>
 
-      <section className="section_container">
-        <div className="w-full mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
-          <input
-            type="text"
-            placeholder="Search for products ..."
-            value={searchQuery}
-            className="w-full max-w-4xl p-2 border rounded-sm"
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-          <button className="btn" onClick={handleSearch}>
-            Search
-          </button>
-        </div>
+//       <section className="section_container">
+//         <div className="w-full mb-12 flex flex-col md:flex-row items-center justify-center gap-4">
+//           <input
+//             type="text"
+//             placeholder="Search for products ..."
+//             value={searchQuery}
+//             className="w-full max-w-4xl p-2 border rounded-sm"
+//             onChange={(e) => setSearchQuery(e.target.value)}
+//             onKeyDown={handleKeyDown}
+//           />
+//           <button className="btn" onClick={handleSearch}>
+//             Search
+//           </button>
+//         </div>
 
-        <ProductCards products={filteredProducts} />
-      </section>
-    </>
-  );
-};
+//         <ProductCards products={filteredProducts} />
+//       </section>
+//     </>
+//   );
+// };
 
-export default Search;
+// export default Search;
