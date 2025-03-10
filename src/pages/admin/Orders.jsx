@@ -3,7 +3,7 @@ import { RiEditBoxLine } from "react-icons/ri";
 const Orders = () => {
   return (
     <>
-      <div className="p-4 w-full overflow-xauto">
+      <div className="p-4  overflow-xauto">
         <table className="table-auto w-full border-collapse border border-gray-300 shadow-md ">
           <thead>
             <tr className="bg-gray-200 text-gray-700">

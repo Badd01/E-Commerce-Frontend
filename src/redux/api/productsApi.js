@@ -1,38 +1,42 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getBaseUrl } from "../../utils/getBaseUrl";
+import { apiSlice } from "./apiSlice";
 
-export const productsApi = createApi({
-  reducerPath: "productsApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${getBaseUrl()}/api/products`,
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token");
-      if (token) headers.set("Authorization", `Bearer ${token}`);
-      return headers;
-    },
-  }),
+export const productsApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     createReview: builder.mutation({
-      query: (review) => ({ url: "/review", method: "POST", body: review }),
+      query: (review) => ({
+        url: "/products/review",
+        method: "POST",
+        body: review,
+      }),
+      invalidatesTags: ["Product"],
     }),
     createProduct: builder.mutation({
-      query: (product) => ({ url: "/", method: "POST", body: product }),
+      query: (product) => ({
+        url: "/products",
+        method: "POST",
+        body: product,
+      }),
+      invalidatesTags: ["Product"],
     }),
     getProducts: builder.query({
-      query: () => "/",
+      query: () => "/products",
+      providesTags: ["Product"],
     }),
     getProductBySlug: builder.query({
-      query: (slug) => `/${slug}`,
+      query: (slug) => `/products/${slug}`,
+      providesTags: ["Product"],
     }),
     updateProduct: builder.mutation({
       query: ({ slug, ...data }) => ({
-        url: `/${slug}`,
+        url: `/products/${slug}`,
         method: "PUT",
         body: data,
       }),
+      invalidatesTags: ["Product"],
     }),
     deleteProduct: builder.mutation({
-      query: (slug) => ({ url: `/${slug}`, method: "DELETE" }),
+      query: (slug) => ({ url: `/products/${slug}`, method: "DELETE" }),
+      invalidatesTags: ["Product"],
     }),
   }),
 });

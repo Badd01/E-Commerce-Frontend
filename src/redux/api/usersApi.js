@@ -1,40 +1,29 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getBaseUrl } from "../../utils/getBaseUrl";
+import { apiSlice } from "./apiSlice";
 
-export const usersApi = createApi({
-  reducerPath: "usersApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${getBaseUrl()}/api/users`,
-    prepareHeaders: (headers) => {
-      const token = localStorage.getItem("token");
-      if (token) headers.set("Authorization", `Bearer ${token}`);
-      return headers;
-    },
-  }),
-  tagTypes: ["User"],
+export const usersApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUser: builder.query({
-      query: (id) => `/${id}`,
+      query: (id) => `/users/${id}`,
       providesTags: ["User"],
     }),
     updateUser: builder.mutation({
-      query: (data) => ({ url: "/update", method: "PUT", body: data }),
+      query: (data) => ({ url: "/users/update", method: "PUT", body: data }),
       invalidatesTags: ["User"],
     }),
     changePassword: builder.mutation({
       query: (passwords) => ({
-        url: "/update/password",
+        url: "/users/update/password",
         method: "PUT",
         body: passwords,
       }),
     }),
     getAllUser: builder.query({
-      query: () => "/all-user",
+      query: () => "/users/all-user",
       providesTags: ["User"],
     }),
     updateRoleUser: builder.mutation({
-      query: (id, role) => ({
-        url: `/update/role/${id}`,
+      query: ({ id, role }) => ({
+        url: `/users/update/role/${id}`,
         method: "PUT",
         body: { role },
       }),
@@ -42,7 +31,7 @@ export const usersApi = createApi({
     }),
     deleteUser: builder.mutation({
       query: (id) => ({
-        url: `/${id}`,
+        url: `/users/${id}`,
         method: "DELETE",
       }),
       invalidatesTags: ["User"],

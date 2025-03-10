@@ -23,6 +23,7 @@ const Navbar = () => {
   const [logoutUser] = useLogoutUserMutation();
 
   const handleClose = (e) => {
+    console.log("Target:", e.target);
     if (e.target === e.currentTarget) setIsCartOpen(false);
   };
 
@@ -186,7 +187,8 @@ const Navbar = () => {
         </div>
       </nav>
 
-      <Overlay isOpen={isCartOpen} isForm={false} onClose={handleClose}>
+      {/* cart modal- handleClose default receive event <=> handleClose(e) */}
+      <Overlay isOpen={isCartOpen} isAdd={false} onClose={handleClose}>
         <CartModal isOpen={isCartOpen} onClose={handleCartToggle} />
       </Overlay>
     </header>

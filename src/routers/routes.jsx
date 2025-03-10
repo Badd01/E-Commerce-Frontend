@@ -12,6 +12,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import Users from "../pages/admin/Users";
 import Products from "../pages/admin/Products";
 import Orders from "../pages/admin/Orders";
+import Shop from "../pages/admin/Shop";
 
 let router = createBrowserRouter([
   {
@@ -59,11 +60,15 @@ let router = createBrowserRouter([
     Component: AdminLayout,
     children: [
       {
-        index: true,
+        path: "shop",
+        Component: Shop,
+      },
+      {
+        path: "products",
         Component: Products,
       },
       {
-        path: "users",
+        index: true,
         Component: Users,
       },
       {

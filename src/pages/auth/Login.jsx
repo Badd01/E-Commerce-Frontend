@@ -24,7 +24,7 @@ const Login = () => {
       dispatch(setCredentials(response));
       toast.success(response.message);
       setTimeout(() => {
-        navigate("/admin/users");
+        navigate("/admin/");
       }, 2000);
     } catch (err) {
       console.error("Error login: ", err);

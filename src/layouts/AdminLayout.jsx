@@ -1,25 +1,23 @@
 import AdminSidebar from "../components/admin/AdminSidebar";
 import AdminNavbar from "../components/admin/AdminNavbar";
 import AdminFooter from "../components/admin/AdminFooter";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Outlet, useNavigate } from "react-router";
 import { useRefreshTokenMutation } from "../redux/api/authApi";
 import { useEffect } from "react";
-import { logout, setCredentials } from "../redux/features/authSlice";
+import { logout, tokenReceived } from "../redux/features/authSlice";
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [refreshToken] = useRefreshTokenMutation();
-  const user = useSelector((state) => state.auth.user);
 
   useEffect(() => {
     const handleRefresh = async () => {
       try {
         const refreshResult = await refreshToken().unwrap();
-        console.log(refreshResult);
-        if (refreshResult?.data?.token) {
-          dispatch(setCredentials({ ...refreshResult.data, user }));
+        if (refreshResult) {
+          dispatch(tokenReceived(refreshResult));
         } else {
           dispatch(logout());
           navigate("/auth/login");
@@ -32,17 +30,17 @@ const AdminLayout = () => {
     };
 
     handleRefresh();
-  }, [refreshToken, dispatch, navigate, user]);
+  }, [refreshToken, navigate, dispatch]);
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <AdminNavbar />
-      <div className="flex">
+      <div className="flex flex-grow">
         <AdminSidebar />
         <Outlet />
       </div>
       <AdminFooter />
-    </>
+    </div>
   );
 };
 

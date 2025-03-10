@@ -13,7 +13,7 @@ const CartModal = ({ isOpen, onClose }) => {
         <div className="flex justify-between items-center mb-4">
           <h4 className="text-xl font-semibold">Your Cart</h4>
           <button
-            onClick={() => onClose()}
+            onClick={onClose}
             className="hover:scale-115 transition-all duration-300  bg-black hover:bg-red-500 rounded-sm p-1 text-white"
           >
             <RiCloseFill />

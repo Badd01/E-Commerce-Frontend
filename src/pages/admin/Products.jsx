@@ -1,57 +1,117 @@
-import { RiEditBoxLine } from "react-icons/ri";
+import { ToastContainer, Zoom, toast } from "react-toastify";
+import Table from "../../components/admin/Table";
+import {
+  useDeleteProductMutation,
+  useGetProductsQuery,
+  // useUpdateProductMutation,
+} from "../../redux/api/productsApi";
+import Overlay from "../../components/Overlay";
+import FormAdd from "../../components/admin/FormAdd";
+import FormEdit from "../../components/admin/FormEdit";
+import { useState } from "react";
 
 const Products = () => {
+  const { data: products, isLoading } = useGetProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation();
+  // const [updateProduct] = useUpdateProductMutation();
+  const [addType, setAddType] = useState(null);
+  const [editType, setEditType] = useState(null);
+  const [dataEdit, setDataEdit] = useState(null);
+
+  const handleOpen = (type) => {
+    setAddType(type);
+  };
+
+  const handleClose = () => {
+    setAddType(null);
+    setEditType(null);
+    setDataEdit(null);
+  };
+
+  const showToast = (message, type) => {
+    toast[type](message);
+  };
+
+  const handleEdit = (type, item) => {
+    setEditType(type);
+    setDataEdit(item);
+  };
+
+  const handleDelete = (type, id) => {
+    toast(
+      ({ closeToast }) => (
+        <div className="text-center">
+          <p>Are you sure you want to delete this {type}?</p>
+          <div className="flex justify-center gap-4 mt-2">
+            <button
+              className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
+              onClick={() => confirmDelete(type, id, closeToast)}
+            >
+              Delete
+            </button>
+            <button
+              className="bg-gray-300  px-3 py-1 rounded hover:bg-gray-400"
+              onClick={closeToast}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      ),
+      { transition: Zoom, autoClose: false, position: "top-center" }
+    );
+  };
+
+  const confirmDelete = async (type, id, closeToast) => {
+    closeToast();
+    if (type === "product") {
+      try {
+        const response = await deleteProduct(id).unwrap();
+        showToast(response.message, "success");
+      } catch (error) {
+        showToast(error.data.message, "error");
+      }
+    }
+  };
+
+  if (isLoading) return <div className="text-xl font-semibold">Loading...</div>;
+
   return (
-    <>
-      <div className="p-4 w-full overflow-xauto">
-        <table className="table-auto w-full border-collapse border border-gray-300 shadow-md ">
-          <thead>
-            <tr className="bg-gray-200 text-gray-700">
-              <th className="border border-gray-300 px-4 py-2 text-center w-16">
-                ID
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Name
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Phone Number
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Address
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-center">
-                Total Orders
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-center">
-                Edit
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="hover:bg-gray-100">
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                1
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                The Sliding Mr. Bones
-              </td>
-              <td className="border border-gray-300 px-4 py-2">
-                Malcolm Lockyer
-              </td>
-              <td className="border border-gray-300 px-4 py-2">1961</td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                14
-              </td>
-              <td className="border border-gray-300 px-4 py-2 text-center">
-                <button className="text-blue-500 hover:text-blue-700">
-                  <RiEditBoxLine size={24} />
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </>
+    <div className=" p-4 overflow-x-auto w-full">
+      <h2 className="text-2xl font-bold mb-6">Product Management</h2>
+
+      <Table
+        title="Products"
+        data={products.data}
+        columns={[
+          { key: "name", label: "Name" },
+          { key: "image", label: "Image" },
+          { key: "description", label: "Description" },
+          { key: "price", label: "Price" },
+          { key: "stock", label: "Stock" },
+          { key: "categoryId", label: "Category" },
+          { key: "tagId", label: "Tag" },
+          { key: "colorId", label: "Color" },
+          { key: "yearId", label: "Year" },
+        ]}
+        onAdd={() => handleOpen("product")}
+        onEdit={(item) => handleEdit("product", item)}
+        onDelete={(id) => handleDelete("product", id)}
+      />
+
+      <ToastContainer />
+      <Overlay isOpen={!!addType} isSetting={true}>
+        <FormAdd type={addType} onClose={handleClose} showToast={showToast} />
+      </Overlay>
+      <Overlay isOpen={!!editType} isSetting={true}>
+        <FormEdit
+          type={editType}
+          data={dataEdit}
+          onClose={handleClose}
+          showToast={showToast}
+        />
+      </Overlay>
+    </div>
   );
 };
 

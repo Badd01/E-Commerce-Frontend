@@ -5,14 +5,15 @@ import {
   useUpdateRoleUserMutation,
 } from "../../redux/api/usersApi";
 import { ToastContainer, Zoom, toast } from "react-toastify";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const Users = () => {
-  const user = useSelector((state) => state.auth.user);
-  const { data, isLoading: isLoadingUser } = useGetAllUserQuery();
-  const { updateRoleUser } = useUpdateRoleUserMutation();
+  const { data: allusers, isLoading: isLoadingUser } = useGetAllUserQuery();
+  const [updateRoleUser] = useUpdateRoleUserMutation();
   const [deleteUser] = useDeleteUserMutation();
-  if (isLoadingUser) return <p>Loading...</p>;
+  const [editUserId, setEditUserId] = useState(null);
+  if (isLoadingUser)
+    return <div className="text-xl font-semibold">Loading...</div>;
 
   const handleDelete = (id) => {
     toast(
@@ -27,7 +28,7 @@ const Users = () => {
               Delete
             </button>
             <button
-              className="bg-gray-300 text-gray-700 px-3 py-1 rounded hover:bg-gray-400"
+              className="bg-gray-300  px-3 py-1 rounded hover:bg-gray-400"
               onClick={closeToast}
             >
               Cancel
@@ -41,88 +42,92 @@ const Users = () => {
 
   const confirmDelete = async (id, closeToast) => {
     closeToast();
-
     try {
       const response = await deleteUser(id).unwrap();
-      console.log(response);
       toast.success(response.message);
-    } catch (err) {
-      toast.error(err.data?.message || "Error deleting user");
+    } catch (error) {
+      toast.error(error.data.message);
     }
   };
 
-  const handleEdit = (id, role) => {
+  const handleEditRole = (id) => {
+    setEditUserId(id);
+  };
+
+  const handleUpdateRole = async (id, role) => {
     try {
-      console.log(id, role);
-    } catch (err) {
-      console.error(err);
+      const response = await updateRoleUser({ id, role }).unwrap();
+      toast.success(response.message);
+    } catch (error) {
+      toast.error(error.data.message);
     }
   };
 
   return (
     <>
-      <div className="p-4 w-full overflow-x-auto">
-        <p>Total Users: {data.data?.length}</p>
-        <table className="table-auto w-full border-collapse border border-gray-300 shadow-md ">
+      <div className="p-4 overflow-x-auto w-full">
+        <h4 className="text-xl font-semibold mb-6">User Management</h4>
+        <h4 className="text-xl font-semibold">User</h4>
+        <p className="flex items-center mb-4">Total: {allusers.data.length} </p>
+        <table className="table-auto w-full border shadow-md ">
           <thead>
-            <tr className="bg-gray-200 text-gray-700">
-              <th className="border border-gray-300 px-4 py-2 text-center w-16">
-                ID
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Name
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Phone Number
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Address
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-left">
-                Role
-              </th>
-              <th className="border border-gray-300 px-4 py-2 text-center">
-                Setting
-              </th>
+            <tr className="bg-gray-200 ">
+              <th className="border px-4 py-2 text-center w-16">ID</th>
+              <th className="border px-4 py-2 text-left">Name</th>
+              <th className="border px-4 py-2 text-left">Phone Number</th>
+              <th className="border px-4 py-2 text-left">Address</th>
+              <th className="border px-4 py-2 text-left">Role</th>
+              <th className="border px-4 py-2 text-center">Setting</th>
             </tr>
           </thead>
           <tbody>
-            {data.data?.map((user) => (
+            {allusers.data.map((user) => (
               <tr key={user.id} className="hover:bg-gray-100">
-                <td className="border border-gray-300 px-4 py-2 text-center">
-                  {user.id}
+                <td className="border px-4 py-2 text-center">{user.id}</td>
+                <td className="border px-4 py-2">{user.name}</td>
+                <td className="border px-4 py-2">{user.phoneNumber}</td>
+                <td className="border px-4 py-2">{user.address}</td>
+                <td className="border px-4 py-2">
+                  {editUserId === user.id ? (
+                    <select
+                      defaultValue={user.role}
+                      onChange={(e) =>
+                        handleUpdateRole(user.id, e.target.value)
+                      }
+                    >
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
+                  ) : (
+                    user.role
+                  )}
                 </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.name}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.phoneNumber}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.address}
-                </td>
-                <td className="border border-gray-300 px-4 py-2">
-                  {user.role}
-                </td>
-                <td className="border border-gray-300 px-4 py-2 text-center">
-                  <button
-                    onClick={() => handleEdit(user.id, user.role)}
-                    className="text-blue-300 hover:text-blue-500 hover:scale-110 transition mr-2"
-                  >
-                    <RiEdit2Fill size={24} />
-                  </button>
-                  <button
-                    onClick={() => handleDelete(user.id)}
-                    className="text-red-300 hover:text-red-500 hover:scale-110 transition"
-                  >
-                    <RiDeleteBin5Fill size={24} />
-                  </button>
+                <td className="border px-4 py-2 text-center ">
+                  <div className="flex">
+                    <button
+                      onClick={() =>
+                        editUserId === user.id
+                          ? setEditUserId(null)
+                          : handleEditRole(user.id)
+                      }
+                      className="text-blue-300 hover:text-blue-500 hover:scale-110 transition mr-2 "
+                    >
+                      <RiEdit2Fill size={24} />
+                    </button>
+                    <button
+                      onClick={() => handleDelete(user.id)}
+                      className="text-red-300 hover:text-red-500 hover:scale-110 transition "
+                    >
+                      <RiDeleteBin5Fill size={24} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
       <ToastContainer />
     </>
   );
