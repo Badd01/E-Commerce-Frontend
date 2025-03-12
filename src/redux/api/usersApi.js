@@ -20,6 +20,7 @@ export const usersApi = apiSlice.injectEndpoints({
     getAllUser: builder.query({
       query: () => "/users/all-user",
       providesTags: ["User"],
+      keepUnusedDataFor: 300,
     }),
     updateRoleUser: builder.mutation({
       query: ({ id, role }) => ({

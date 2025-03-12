@@ -9,10 +9,10 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import AdminLayout from "../layouts/AdminLayout";
 import AuthLayout from "../layouts/AuthLayout";
-import Users from "../pages/admin/Users";
-import Products from "../pages/admin/Products";
+import Users from "../pages/admin/users/Users";
+import Products from "../pages/admin/products/Products";
 import Orders from "../pages/admin/Orders";
-import Shop from "../pages/admin/Shop";
+import Shop from "../pages/admin/shop/Shop";
 
 let router = createBrowserRouter([
   {

@@ -3,17 +3,15 @@ import {
   useDeleteUserMutation,
   useGetAllUserQuery,
   useUpdateRoleUserMutation,
-} from "../../redux/api/usersApi";
+} from "../../../redux/api/usersApi";
 import { ToastContainer, Zoom, toast } from "react-toastify";
 import { useState } from "react";
 
 const Users = () => {
-  const { data: allusers, isLoading: isLoadingUser } = useGetAllUserQuery();
+  const { data, isLoading } = useGetAllUserQuery();
   const [updateRoleUser] = useUpdateRoleUserMutation();
   const [deleteUser] = useDeleteUserMutation();
   const [editUserId, setEditUserId] = useState(null);
-  if (isLoadingUser)
-    return <div className="text-xl font-semibold">Loading...</div>;
 
   const handleDelete = (id) => {
     toast(
@@ -63,12 +61,14 @@ const Users = () => {
     }
   };
 
+  if (isLoading) return <div className="text-xl font-semibold">Loading...</div>;
+
   return (
     <>
       <div className="p-4 overflow-x-auto w-full">
         <h4 className="text-xl font-semibold mb-6">User Management</h4>
         <h4 className="text-xl font-semibold">User</h4>
-        <p className="flex items-center mb-4">Total: {allusers.data.length} </p>
+        <p className="flex items-center mb-4">Total: {data.data.length} </p>
         <table className="table-auto w-full border shadow-md ">
           <thead>
             <tr className="bg-gray-200 ">
@@ -81,9 +81,9 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {allusers.data.map((user) => (
+            {data.data.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-100">
-                <td className="border px-4 py-2 text-center">{user.id}</td>
+                <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2">{user.name}</td>
                 <td className="border px-4 py-2">{user.phoneNumber}</td>
                 <td className="border px-4 py-2">{user.address}</td>
@@ -103,7 +103,7 @@ const Users = () => {
                   )}
                 </td>
                 <td className="border px-4 py-2 text-center ">
-                  <div className="flex">
+                  <div className="flex justify-center items-center">
                     <button
                       onClick={() =>
                         editUserId === user.id

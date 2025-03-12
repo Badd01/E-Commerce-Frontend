@@ -8,7 +8,7 @@ export const productsApi = apiSlice.injectEndpoints({
         method: "POST",
         body: review,
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["products"],
     }),
     createProduct: builder.mutation({
       query: (product) => ({
@@ -16,27 +16,29 @@ export const productsApi = apiSlice.injectEndpoints({
         method: "POST",
         body: product,
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["products"],
     }),
     getProducts: builder.query({
       query: () => "/products",
-      providesTags: ["Product"],
+      providesTags: ["products"],
+      keepUnusedDataFor: 300, // cache keep data for 5 minutes
     }),
-    getProductBySlug: builder.query({
-      query: (slug) => `/products/${slug}`,
-      providesTags: ["Product"],
+    getProductById: builder.query({
+      query: (id) => `/products/${id}`,
+      providesTags: ["products"],
     }),
     updateProduct: builder.mutation({
-      query: ({ slug, ...data }) => ({
-        url: `/products/${slug}`,
-        method: "PUT",
+      query: ({ id, data }) => ({
+        url: `/products/${id}`,
+        method: "PATCH",
         body: data,
+        formData: true,
       }),
-      invalidatesTags: ["Product"],
+      invalidatesTags: ["products"],
     }),
     deleteProduct: builder.mutation({
-      query: (slug) => ({ url: `/products/${slug}`, method: "DELETE" }),
-      invalidatesTags: ["Product"],
+      query: (id) => ({ url: `/products/${id}`, method: "DELETE" }),
+      invalidatesTags: ["products"],
     }),
   }),
 });
@@ -44,7 +46,7 @@ export const productsApi = apiSlice.injectEndpoints({
 export const {
   useCreateProductMutation,
   useGetProductsQuery,
-  useGetProductBySlugQuery,
+  useGetProductByIdQuery,
   useUpdateProductMutation,
   useDeleteProductMutation,
   useCreateReviewMutation,

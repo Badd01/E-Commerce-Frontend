@@ -2,120 +2,68 @@ import { apiSlice } from "./apiSlice";
 
 export const shopApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    createCategory: builder.mutation({
-      query: (data) => ({
-        url: "/shop/categories",
+    createItem: builder.mutation({
+      query: ({ type, ...data }) => ({
+        url: `/shop/${type}`,
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Categories"],
+      invalidatesTags: (result, error, { type }) => {
+        if (error) {
+          return [];
+        }
+        return [type];
+      },
     }),
-    createTag: builder.mutation({
-      query: (data) => ({
-        url: "/shop/tags",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Tags"],
+    getAllItem: builder.query({
+      query: ({ type }) => `/shop/${type}`,
+      providesTags: (result, error, { type }) => {
+        if (error) {
+          return [];
+        }
+        return [type];
+      },
     }),
-    createColor: builder.mutation({
-      query: (data) => ({
-        url: "/shop/colors",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Colors"],
+    getAllShop: builder.query({
+      query: () => `/shop`,
+      providesTags: ["categories", "colors", "tags", "years"],
+      keepUnusedDataFor: 300, // cache keep data for 5 minutes
     }),
-    createYear: builder.mutation({
-      query: (data) => ({
-        url: "/shop/years",
-        method: "POST",
-        body: data,
-      }),
-      invalidatesTags: ["Years"],
-    }),
-    getAllCategory: builder.query({
-      query: () => "/shop/categories",
-      providesTags: ["Categories"],
-    }),
-    getAllTag: builder.query({
-      query: () => "/shop/tags",
-      providesTags: ["Tags"],
-    }),
-    getAllColor: builder.query({
-      query: () => "/shop/colors",
-      providesTags: ["Colors"],
-    }),
-    getAllYear: builder.query({
-      query: () => "/shop/years",
-      providesTags: ["Years"],
-    }),
-    updateCategory: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/shop/categories/${id}`,
+    updateItem: builder.mutation({
+      query: ({ type, id, ...data }) => ({
+        url: `/shop/${type}/${id}`,
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["Categories", "Tags"],
+      invalidatesTags: (result, error, { type }) => {
+        if (type === "categories") {
+          return ["categories", "tags"];
+        }
+        if (error) {
+          return [];
+        }
+        return [type];
+      },
     }),
-    updateTag: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/shop/tags/${id}`,
-        method: "PUT",
-        body: data,
+    deleteItem: builder.mutation({
+      query: ({ type, id }) => ({
+        url: `/shop/${type}/${id}`,
+        method: "DELETE",
       }),
-      invalidatesTags: ["Tags"],
-    }),
-    updateColor: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/shop/colors/${id}`,
-        method: "PUT",
-        body: data,
-      }),
-      invalidatesTags: ["Colors"],
-    }),
-    updateYear: builder.mutation({
-      query: ({ id, ...data }) => ({
-        url: `/shop/years/${id}`,
-        method: "PUT",
-        body: data,
-      }),
-      invalidatesTags: ["Years"],
-    }),
-    deleteCategory: builder.mutation({
-      query: (id) => ({ url: `/shop/categories/${id}`, method: "DELETE" }),
-      invalidatesTags: ["Categories", "Tags"],
-    }),
-    deleteTag: builder.mutation({
-      query: (id) => ({ url: `/shop/tags/${id}`, method: "DELETE" }),
-      invalidatesTags: ["Tags"],
-    }),
-    deleteColor: builder.mutation({
-      query: (id) => ({ url: `/shop/colors/${id}`, method: "DELETE" }),
-      invalidatesTags: ["Colors"],
-    }),
-    deleteYear: builder.mutation({
-      query: (id) => ({ url: `/shop/years/${id}`, method: "DELETE" }),
-      invalidatesTags: ["Years"],
+      invalidatesTags: (result, error, { type }) => {
+        if (error) {
+          return [];
+        }
+        return [type];
+      },
     }),
   }),
 });
 
 export const {
-  useCreateCategoryMutation,
-  useCreateTagMutation,
-  useCreateColorMutation,
-  useCreateYearMutation,
-  useGetAllCategoryQuery,
-  useGetAllTagQuery,
-  useGetAllColorQuery,
-  useGetAllYearQuery,
-  useUpdateCategoryMutation,
-  useUpdateTagMutation,
-  useUpdateColorMutation,
-  useUpdateYearMutation,
-  useDeleteCategoryMutation,
-  useDeleteTagMutation,
-  useDeleteColorMutation,
-  useDeleteYearMutation,
+  useCreateItemMutation,
+  useGetAllItemQuery,
+  useUpdateItemMutation,
+  useDeleteItemMutation,
+  useGetAllShopQuery,
 } = shopApi;

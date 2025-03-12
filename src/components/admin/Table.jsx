@@ -4,15 +4,13 @@ const Table = ({ title, data, columns, onAdd, onEdit, onDelete }) => {
   return (
     <div>
       <h4 className="text-xl font-semibold">{title}</h4>
-      <div className="flex justify-between mb-4">
-        <p className="flex items-center">Total: {data?.length} </p>
-        <button
-          onClick={onAdd}
-          className="bg-dark-2 px-2 py-1 rounded text-white hover:scale-105 transition"
-        >
-          Add
-        </button>
-      </div>
+      <p className="flex items-center">Total: {data?.length}</p>
+      <button
+        onClick={onAdd}
+        className="bg-dark-2 px-2 py-1 mb-4 rounded text-white hover:scale-105 transition"
+      >
+        Add new
+      </button>
       <table className="table-auto w-full border border-gray-300 shadow-md">
         <thead>
           <tr className="bg-gray-200">
