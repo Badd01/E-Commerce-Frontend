@@ -34,6 +34,7 @@ const FormEditShop = ({ type, dataEdit, onClose, showToast }) => {
       }).unwrap();
       showToast(response.message, "success");
     } catch (error) {
+      console.log(error);
       showToast(error.data.message.message, "error");
     }
   };

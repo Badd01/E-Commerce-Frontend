@@ -13,12 +13,17 @@ const initialState = {
   colorId: 0,
   yearId: 0,
   image: null,
+  newestProductData: JSON.parse(sessionStorage.getItem("newestProducts")) || null
+
 };
 
 export const productsSlice = createSlice({
   name: "products",
   initialState,
   reducers: {
+    setNewestProductData: (state, action) => {
+      state.newestProductData = action.payload;
+    }, 
     setName: (state, action) => {
       state.name = action.payload;
     },
@@ -83,6 +88,7 @@ export const productsSlice = createSlice({
 });
 
 export const {
+  setNewestProductData,
   setCategoryId,
   setColorId,
   setDescription,
@@ -96,5 +102,6 @@ export const {
   openEditForm,
   closeAddForm,
   closeEditForm,
+
 } = productsSlice.actions;
 export default productsSlice.reducer;

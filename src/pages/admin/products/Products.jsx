@@ -14,9 +14,18 @@ import {
   openAddForm,
   openEditForm,
 } from "../../../redux/features/productsSlice";
+import { useState } from "react";
 
 const Products = () => {
-  const { data, isLoading } = useGetProductsQuery();
+  const [page, setPage] = useState(1);
+  const [sortBy, setSortBy] = useState("createdAt");
+  const [sortOrder, setSortOrder] = useState("desc");
+
+  const { data, isLoading, error } = useGetProductsQuery({
+    page,
+    sortBy,
+    sortOrder,
+  });
   const [deleteProduct] = useDeleteProductMutation();
 
   const { addForm, editForm, dataEdit } = useSelector(
@@ -63,26 +72,43 @@ const Products = () => {
     closeToast();
   };
 
-  if (isLoading) return <div className="text-xl font-semibold">Loading...</div>;
+  if (isLoading) return <p className="text-xl font-semibold">Loading...</p>;
+  if (error)
+    return <p className="text-xl font-semibold">Error loading products!</p>;
 
   return (
     <div className=" p-4 overflow-x-auto w-full">
       <h2 className="text-2xl font-bold mb-6">Product Management</h2>
       <h4 className="text-xl font-semibold">Products</h4>
-      <p className="flex items-center">Total: {data.pagination.totalItems}</p>
+      <p className="flex items-center font-medium">Total: {data?.pagination.totalItems}</p>
       <button
         onClick={() => dispatch(openAddForm())}
         className="bg-dark-2 px-2 py-1 mb-4 rounded text-white hover:scale-105 transition"
       >
         Add new
       </button>
+
+      <div className="flex items-center gap-2 mb-4">
+        <label className="font-medium">Sort by: </label>
+        <select className="border rounded px-2 py-1"   value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
+          <option value="name">Name</option>
+          <option value="price">Price</option>
+          <option value="createdAt">Created At</option>
+        </select>
+        <button className="border rounded px-2 py-1"
+          onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
+        >
+          {sortOrder === "asc" ? "▲" : "▼"}
+        </button>
+      </div>
+
       <table className="table-auto w-full border text-center shadow-md ">
         <thead>
           <tr className="bg-gray-200 ">
             <th className="border px-4 py-2 ">ID</th>
             <th className="border px-4 py-2 ">Image</th>
             <th className="border px-4 py-2">Name</th>
-            <th className="border px-4 py-2">Price</th>
+            <th className="border px-4 py-2">Price ($)</th>
             <th className="border px-4 py-2 ">Stock</th>
             <th className="border px-4 py-2 ">Category</th>
             <th className="border px-4 py-2">Tag</th>
@@ -91,14 +117,15 @@ const Products = () => {
             <th className="border px-4 py-2">Setting</th>
           </tr>
         </thead>
+
         <tbody>
-          {data.data.map((item, index) => (
+          {data?.data.map((item, index) => (
             <tr key={item.products.id} className="hover:bg-gray-100">
-              <td className="border px-4 py-2 ">{index + 1}</td>
-              <td className="border mx-auto px-4 py-2 t">
+              <td className="border px-4 py-2 ">{index + 1 + (page - 1) * 10}</td>
+              <td className="border px-4 py-2">
                 <img
                   src={item.product_images.imageUrl}
-                  className="max-w-48 max-h-48 object-cover"
+                  className="max-w-48 mx-auto max-h-48 object-cover"
                   alt="Image product"
                 />
               </td>
@@ -129,6 +156,17 @@ const Products = () => {
           ))}
         </tbody>
       </table>
+
+      <div className="flex items-center justify-center gap-2 mt-4">
+        <button disabled={page === 1} onClick={() => setPage(page - 1)} className="bg-dark-2 px-2 py-1 rounded text-white hover:scale-105 transition">
+          Prev
+        </button>
+        <span className="font-medium"> Page {page} of {data?.pagination?.totalPages} </span>
+        <button  disabled={page >= data?.pagination?.totalPages} onClick={() => setPage(page + 1)} className="bg-dark-2 px-2 py-1 rounded text-white hover:scale-105 transition">
+          Next
+        </button>
+      </div>
+
       <ToastContainer />
 
       <Overlay isOpen={!!addForm} isSetting={true}>

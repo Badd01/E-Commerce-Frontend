@@ -19,13 +19,20 @@ export const productsApi = apiSlice.injectEndpoints({
       invalidatesTags: ["products"],
     }),
     getProducts: builder.query({
-      query: () => "/products",
+      query: ({ page = 1, sortBy = "createdAt", sortOrder = "asc" }) => 
+        `/products?page=${page}&sortBy=${sortBy}&sortOrder=${sortOrder}`,
       providesTags: ["products"],
       keepUnusedDataFor: 300, // cache keep data for 5 minutes
     }),
-    getProductById: builder.query({
-      query: (id) => `/products/${id}`,
+    // getProducts: builder.query({
+    //   query: () => "/products",
+    //   providesTags: ["products"],
+    //   keepUnusedDataFor: 300, // cache keep data for 5 minutes
+    // }),
+    getProductBySlug: builder.query({
+      query: (slug) => `/products/${slug}`,
       providesTags: ["products"],
+      keepUnusedDataFor: 60,
     }),
     updateProduct: builder.mutation({
       query: ({ id, data }) => ({

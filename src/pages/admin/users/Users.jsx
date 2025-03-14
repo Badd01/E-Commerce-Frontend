@@ -68,7 +68,7 @@ const Users = () => {
       <div className="p-4 overflow-x-auto w-full">
         <h4 className="text-xl font-semibold mb-6">User Management</h4>
         <h4 className="text-xl font-semibold">User</h4>
-        <p className="flex items-center mb-4">Total: {data.data.length} </p>
+        <p className="flex items-center mb-4">Total: {data?.data.length} </p>
         <table className="table-auto w-full border shadow-md ">
           <thead>
             <tr className="bg-gray-200 ">
@@ -81,7 +81,7 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {data.data.map((user, index) => (
+            {data?.data.map((user, index) => (
               <tr key={user.id} className="hover:bg-gray-100">
                 <td className="border px-4 py-2 text-center">{index + 1}</td>
                 <td className="border px-4 py-2">{user.name}</td>

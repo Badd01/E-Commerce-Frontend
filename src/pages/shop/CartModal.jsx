@@ -5,13 +5,13 @@ import { RiCloseFill } from "react-icons/ri";
 const CartModal = ({ isOpen, onClose }) => {
   return (
     <div
-      className={`flex bg-white rounded-l-md h-full overflow-y-auto flex-col transition-transform duration-500 w-[350px]  ${
+      className={`flex bg-white text-dark rounded-l-md h-full overflow-y-auto flex-col transition-transform duration-500 w-[350px]  ${
         isOpen ? " translate-x-0" : " translate-x-full"
       }`}
     >
       <div className="p-4 mt-4">
         <div className="flex justify-between items-center mb-4">
-          <h4 className="text-xl font-semibold">Your Cart</h4>
+          <h4 className="text-xl  font-semibold">Your Cart</h4>
           <button
             onClick={onClose}
             className="hover:scale-115 transition-all duration-300  bg-black hover:bg-red-500 rounded-sm p-1 text-white"

@@ -4,24 +4,19 @@ import { Link } from "react-router";
 const Categories = () => {
   const categories = [
     {
-      name: "Áo",
-      path: "accessories",
+      name: "Bags",
+      path: "bags",
       image: images.category_1,
     },
     {
-      name: "Quần",
-      path: "dress",
+      name: "Belts",
+      path: "Belts",
       image: images.category_2,
     },
     {
-      name: "Chân váy",
-      path: "jewellery",
+      name: "Eyewear",
+      path: "eyewear",
       image: images.category_3,
-    },
-    {
-      name: "Đầm",
-      path: "cosmetics",
-      image: images.category_4,
     },
   ];
 
@@ -29,31 +24,31 @@ const Categories = () => {
     {
       _id: 1,
       image: images.card_1,
-      title: "Hàng ngày",
-      description: "Thoải mái, gọn gàng.",
+      title: "2025 Collection",
+      description: "New season, new style",
     },
     {
       _id: 2,
       image: images.card_2,
-      title: "Công sở",
-      description: "Thanh lịch, chuyên nghiệp.",
+      title: "2024 Collection",
+      description: "Old season, but still fashionable",
     },
   ];
 
   return (
     <section className="max-w-maxi mx-auto text-center">
       <h4 className=" mt-8 py-4 bg-dark-2 rounded-xl font-bold text-xl text-primary">
-        Danh mục
+        Categories
       </h4>
-      <div className="mt-4 grid grid-cols-2 gap-8 md:grid-cols-4">
+      <div className=" mt-4 grid grid-cols-2 gap-8 md:grid-cols-3">
         {categories.map((category) => (
           <Link
             key={category.name}
             to={`categories/${category.path}`}
-            className=" text-center"
+            className=" mx-auto "
           >
             <img
-              className="max-w-[150px] mx-auto mb-4 rounded-xl hover:scale-105 transition"
+              className="border-2 border-gray-300 w-50 h-50 object-cover mb-4 rounded-full hover:scale-105 transition"
               src={category.image}
               alt={category.name}
             />
@@ -78,7 +73,7 @@ const Categories = () => {
                 className=" underline font-semibold hover:text-primary transition"
                 to="/shop"
               >
-                Khám phá thêm
+                Discover more
               </Link>
             </div>
           </div>

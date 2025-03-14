@@ -6,27 +6,27 @@ import {
 
 const PromoBanner = () => {
   return (
-    <section className="max-w-maxi mx-auto text-center bg-gray-200 py-8 mt-8 rounded-xl grid grid-cols-1 sm:grid-cols-3 gap-8 ">
+    <section className="max-w-maxi text-xl mx-auto min-h-50 text-center bg-gray-200 py-8 mt-8 rounded-xl grid grid-cols-1 sm:grid-cols-3 items-center gap-8 ">
       <div className="flex items-center flex-col">
         <span className="text-primary text-4xl">
           <RiTruckLine />
         </span>
-        <h4 className="text-secondary font-semibold">Giao hàng miễn phí</h4>
-        <p>Với đơn hàng trên 500.000VNĐ</p>
+        <h4 className="text-secondary font-semibold">Free Shipping</h4>
+        <p>With order over $100</p>
       </div>
       <div className="flex items-center flex-col">
         <span className="text-primary text-4xl">
           <RiExchangeDollarLine />
         </span>
-        <h4 className="text-secondary font-semibold">Hỗ trợ hoàn trả</h4>
-        <p>Trong vòng 3 ngày sau khi mua hàng.</p>
+        <h4 className="text-secondary font-semibold">Free Return</h4>
+        <p>Within 3 days after purchase.</p>
       </div>
       <div className="flex items-center flex-col">
         <span className="text-primary text-4xl">
           <RiUserVoiceFill />
         </span>
-        <h4 className="text-secondary font-semibold">Hỗ trợ nhiệt tình</h4>
-        <p>Phục vụ từ 8h-22h.</p>
+        <h4 className="text-secondary font-semibold">Strongly Support</h4>
+        <p>For 24/7</p>
       </div>
     </section>
   );

@@ -82,7 +82,7 @@ const Shop = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Table
           title="Categories"
-          data={data.categories}
+          data={data?.categories}
           columns={[{ key: "name", label: "Name" }]}
           onAdd={() => handleAdd("categories")}
           onEdit={(item) => handleEdit("categories", item)}
@@ -90,9 +90,9 @@ const Shop = () => {
         />
         <Table
           title="Tags"
-          data={data.tags.map((item) => ({
+          data={data?.tags.map((item) => ({
             ...item,
-            category: data.categories.find((c) => c.id === item.categoryId)
+            category: data?.categories.find((c) => c.id === item.categoryId)
               .name,
           }))}
           columns={[
@@ -105,7 +105,7 @@ const Shop = () => {
         />
         <Table
           title="Colors"
-          data={data.colors}
+          data={data?.colors}
           columns={[{ key: "name", label: "Name" }]}
           onAdd={() => handleAdd("colors")}
           onEdit={(item) => handleEdit("colors", item)} //  "item" from Table => handleEdit
@@ -113,7 +113,7 @@ const Shop = () => {
         />
         <Table
           title="Years"
-          data={data.years}
+          data={data?.years}
           columns={[{ key: "name", label: "Name" }]}
           onAdd={() => handleAdd("years")}
           onEdit={(item) => handleEdit("years", item)}

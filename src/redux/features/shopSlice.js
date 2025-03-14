@@ -6,12 +6,16 @@ const initialState = {
   dataEdit: null,
   name: "",
   categoryId: 0,
+  shopData: JSON.parse(sessionStorage.getItem("shopData")) || null
 };
 
 export const shopSlice = createSlice({
   name: "shop",
   initialState,
   reducers: {
+    setShopData: (state, action) => {
+      state.shopData = action.payload;
+    },
     setName: (state, action) => {
       state.name = action.payload;
     },
@@ -40,6 +44,7 @@ export const shopSlice = createSlice({
 });
 
 export const {
+  setShopData,
   setName,
   setCategoryId,
   openAddForm,

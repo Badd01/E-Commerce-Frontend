@@ -8,32 +8,31 @@ const Footer = () => {
       <div className="font-medium max-w-maxi mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 m-4 pl-2">
         <div>
           <h4 className="uppercase mb-4 text-primary font-semibold text-xl ">
-            Thời trang ecomm.
+            Ecomm.
           </h4>
           <p className="font-semibold text-sm">
-            Cùng Ecomm. biến từng khoảnh khắc trong cuộc sống trở nên đặc biệt,
-            để bạn luôn tự tin và tỏa sáng!
+            With Ecomm, make every moment special,
             <span className="font-semibold italic block text-primary mt-1">
-              Ecomm.-Thời trang cho mọi khoảnh khắc.
+              Ecomm - Fashion for every moment.
             </span>
           </p>
         </div>
 
         <div>
           <h4 className="uppercase mb-4 text-primary font-semibold text-xl ">
-            liên hệ
+            Contact
           </h4>
           <p className="flex capitalize items-center mb-2 gap-1">
             <span className="text-primary text-xl">
               <RiMapPinFill />
             </span>
-            1 đại cồ việt, hai bà trưng, hà nội
+            1 Dai Co Viet, Hai Ba Trung, Ha Noi
           </p>
           <p className="flex  items-center mb-2 gap-1">
             <span className="text-primary text-xl">
               <RiMailFill />
             </span>
-            cskh@ecomm.com
+            support@ecomm.com
           </p>
           <p className="flex items-center mb-2 gap-1">
             <span className="text-primary text-xl">
@@ -45,35 +44,32 @@ const Footer = () => {
 
         <div>
           <h4 className="uppercase mb-4 text-primary font-semibold text-xl ">
-            hỗ trợ
+            Support
           </h4>
           <Link className="block mb-2 capitalize" to="/">
-            chính sách mua hàng
+            Terms of Service
           </Link>
           <Link className="block mb-2 capitalize" to="#">
-            chính sách đổi trả
+            Return Policy
           </Link>
           <Link className="block mb-2 capitalize" to="#">
-            chính sách bảo hành
-          </Link>
-          <Link className="block mb-2 capitalize" to="#">
-            điều khoản dịch vụ
+            Warranty Policy
           </Link>
         </div>
 
         <div>
-          <h4 className="uppercase mb-4 text-primary font-semibold text-xl ">
-            Cửa hàng
+          <h4 className="uppercase mb-4  text-primary font-semibold text-xl ">
+            Our Stores
           </h4>
           <div className="grid grid-cols-2 gap-4 text-5xl ">
             <Link
-              className="hover:text-red-500 hover:scale-120 mr-auto transition duration-300"
+              className="hover:text-red-500 hover:scale-120 mr-auto  transition duration-300"
               to="https://www.instagram.com"
             >
               <AiFillInstagram />
             </Link>
             <Link
-              className="hover:text-blue-500 hover:scale-120 mr-auto transition duration-300"
+              className="hover:text-blue-500 hover:scale-120 mr-auto  transition duration-300"
               to="https://www.facebook.com"
             >
               <AiFillFacebook />
@@ -85,7 +81,7 @@ const Footer = () => {
               <AiFillTikTok />
             </Link>
             <Link
-              className="hover:text-orange-500 hover:scale-120 mr-auto transition duration-300"
+              className="hover:text-orange-500 hover:scale-120 mr-auto  transition duration-300"
               to="https://shopee.vn"
             >
               <SiShopee />
